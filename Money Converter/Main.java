@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         try {
             double money = sc.nextDouble();
-            int fxMoney = (int) (money * 100); // This is done to avoid floating point precision errors
+            int fxMoney = (int) Math.round(money * 100); // This is done to avoid floating point precision errors
             int quarters = fxMoney / 25; // Amount of quarters
             int dimes = (fxMoney - quarters * 25) / 10; // Amount of dimes
             int nickels = (fxMoney - quarters * 25 - dimes * 10) / 5; // Amount of nickels
