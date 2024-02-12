@@ -18,4 +18,12 @@ public class Couple {
     public Person getGroom() {
         return groom;
     }
+
+    public void setBride(Person bride) {
+        this.bride = bride;
+    }
+
+    public void setGroom(Person groom) {
+        this.groom = groom;
+    }
 }
