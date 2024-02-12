@@ -29,6 +29,7 @@ public class TestWedding {
             Font bold = new Font( "Arial", Font.BOLD, 19);
             windowHeading.setFont(bold);
 
+            //Add Elements
             add(windowHeading);
             add(question);
             add(response);
@@ -40,12 +41,14 @@ public class TestWedding {
             add(dateB);
             add(locationB);
 
+            //Visibility
             person1Last.setVisible(false);
             person2First.setVisible(false);
             person2Last.setVisible(false);
             dateB.setVisible(false);
             locationB.setVisible(false);
 
+            //Action Listeners
             person1First.addActionListener(this);
             person1Last.addActionListener(this);
             person2First.addActionListener(this);
@@ -55,6 +58,8 @@ public class TestWedding {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Each one of these action blocks changes the display elements to those
+            //required for the next step in the process
             if (e.getSource() == person1First) {
                 bName = response.getText();
                 response.setText("");
@@ -102,7 +107,6 @@ public class TestWedding {
             }
         }
     }
-
 
     public static void main(String[] args){
         GuiWindow gui = new GuiWindow();
