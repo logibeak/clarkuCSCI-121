@@ -66,9 +66,8 @@ public class TestPatient extends JFrame implements ActionListener {
             input.setText("");
             if ((text.contains("+")||text.contains("-"))&&(text.length()<=3)) {
                 String bloodGroup = text.replace("+", "p").replace("-", "n");
-                System.out.println(bloodGroup);
 
-
+                userInput = BloodData.stringToBloodData(bloodGroup);
             }
 
             question.setText("New Patient: please enter ID:");

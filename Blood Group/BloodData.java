@@ -49,7 +49,7 @@ public class BloodData {
         setRhFactor(bloodType.rhFactor);
     }
 
-    public BloodData stringToBloodData(String s) {
+    public static BloodData stringToBloodData(String s) {
         BloodData r = switch (s) {
             case "Ap" -> new BloodData(BloodData.Blood.Ap);
             case "An" -> new BloodData(BloodData.Blood.An);

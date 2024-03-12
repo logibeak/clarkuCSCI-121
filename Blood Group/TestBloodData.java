@@ -28,26 +28,18 @@ public class TestBloodData extends JFrame implements ActionListener {
             String text = input.getText();
             if ((text.contains("+")||text.contains("-"))&&(text.length()<=3)) {
                 String bloodGroup = text.replace("+","p").replace("-","n");
-                System.out.println(bloodGroup);
-                BloodData userInput = switch (bloodGroup) {
-                    case "Ap" -> new BloodData(BloodData.Blood.Ap);
-                    case "An" -> new BloodData(BloodData.Blood.An);
-                    case "Bp" -> new BloodData(BloodData.Blood.Bp);
-                    case "Bn" -> new BloodData(BloodData.Blood.Bn);
-                    case "Op" -> new BloodData(BloodData.Blood.Op);
-                    case "On" -> new BloodData(BloodData.Blood.On);
-                    case "ABn" -> new BloodData(BloodData.Blood.ABn);
-                    case "ABp" -> new BloodData(BloodData.Blood.ABp);
-                    default -> null;
-                };
+
+                BloodData userInput = BloodData.stringToBloodData(bloodGroup);
+
                 BloodData defaultData = new BloodData();
+
                 if (userInput == null){
                     JOptionPane.showMessageDialog(this,"Invalid Input!");
                 } else{
                     JOptionPane.showMessageDialog(this, "userInput Object: Type "+userInput.getBloodType()+userInput.getRhFactor());
                     JOptionPane.showMessageDialog(this, "defaultData Object: Type "+defaultData.getBloodType()+defaultData.getRhFactor());
                 }
-            }
+            } dispose();
         }
     }
 
