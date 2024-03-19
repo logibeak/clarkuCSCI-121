@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class TestPatient extends JFrame implements ActionListener {
     JLabel title = new JLabel("TestPatient.java");
@@ -13,7 +14,6 @@ public class TestPatient extends JFrame implements ActionListener {
     JButton next3 = new JButton(">");
     JButton next4 = new JButton(">");
     JButton next5 = new JButton(">");
-    static String bloodType;
     public static int id;
     public static int age;
     public static int secondID;
@@ -48,59 +48,75 @@ public class TestPatient extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == next) {
-            next.setVisible(false);
-            next2.setVisible(true);
-            id = Integer.parseInt(input.getText());
 
-            input.setText("");
-            question.setText("Please enter the patient's age:");
+            try{id = Integer.parseInt(input.getText());
+                next.setVisible(false);
+                next2.setVisible(true);
+                input.setText("");
+                question.setText("Please enter the patient's age:");}
+            catch(Exception exc) {invalidMsgNotifier();}
+
+
         } else if (e.getSource() == next2) {
-            age = Integer.parseInt(input.getText());
-            next2.setVisible(false);
-            next3.setVisible(true);
-            question.setText("Please enter the patient's blood type:");
-            input.setText("");
+
+            try{age = Integer.parseInt(input.getText());
+                next2.setVisible(false);
+                next3.setVisible(true);
+                question.setText("Please enter the patient's blood type:");
+                input.setText("");}
+            catch(Exception exc) {invalidMsgNotifier();}
 
         } else if (e.getSource() == next3) {
-            String text = input.getText();
-            input.setText("");
-            if ((text.contains("+")||text.contains("-"))&&(text.length()<=3)) {
+            try{String text = input.getText();
+                input.setText("");
+
                 String bloodGroup = text.replace("+", "p").replace("-", "n");
 
                 userInput = BloodData.stringToBloodData(bloodGroup);
-            }
+                if (userInput==null){throw new Exception();}
 
-            question.setText("New Patient: please enter ID:");
-            next3.setVisible(false);
-            next4.setVisible(true);
+
+                question.setText("New Patient: please enter ID:");
+                next3.setVisible(false);
+                next4.setVisible(true);}
+            catch(Exception exp){invalidMsgNotifier();}
 
         } else if (e.getSource() == next4) {
-            next4.setVisible(false);
-            next5.setVisible(true);
-            secondID = Integer.parseInt(input.getText());
-            input.setText("");
-            question.setText("New Patient: please enter Age:");
+            try{next4.setVisible(false);
+                next5.setVisible(true);
+                secondID = Integer.parseInt(input.getText());
+                input.setText("");
+                question.setText("New Patient: please enter Age:");}
+            catch(Exception exp){invalidMsgNotifier();}
+
         } else if (e.getSource()==next5){
-            secondAGE = Integer.parseInt(input.getText());
-            input.setText("");
+            try{secondAGE = Integer.parseInt(input.getText());
+                input.setText("");
 
-            Patient defaultData = new Patient();
-            Patient userPatient = new Patient(id,age,userInput);
-            Patient halfDefault = new Patient(secondID,secondAGE,new BloodData(BloodData.Blood.Op));
+                Patient defaultData = new Patient();
+                Patient userPatient = new Patient(id,age,userInput);
+                Patient halfDefault = new Patient(secondID,secondAGE,new BloodData(BloodData.Blood.Op));
 
-            if (userInput == null){
-                JOptionPane.showMessageDialog(this,"Invalid Input!");
-            } else{
-                JOptionPane.showMessageDialog(this, "defaultData Object: Type "+defaultData.getBloodData().getBloodType()
-                        +defaultData.getBloodData().getRhFactor() + " ID=" + defaultData.getId() + " AGE=" + defaultData.getAge());
-                JOptionPane.showMessageDialog(this, "userPatient Object: Type "+userPatient.getBloodData().getBloodType()
-                        +userPatient.getBloodData().getRhFactor() + " ID=" + userPatient.getId() + " AGE=" + userPatient.getAge());
-                JOptionPane.showMessageDialog(this, "halfDefault Object: Type "+halfDefault.getBloodData().getBloodType()
-                        +halfDefault.getBloodData().getRhFactor() + " ID=" + halfDefault.getId() + " AGE=" + halfDefault.getAge());
-            }
-            dispose();
+                if (userInput == null){
+                    JOptionPane.showMessageDialog(this,"Invalid Input!");
+                } else{
+                    JOptionPane.showMessageDialog(this, "defaultData Object: Type "+defaultData.getBloodData().getBloodType()
+                            +defaultData.getBloodData().getRhFactor() + " ID=" + defaultData.getId() + " AGE=" + defaultData.getAge());
+                    JOptionPane.showMessageDialog(this, "userPatient Object: Type "+userPatient.getBloodData().getBloodType()
+                            +userPatient.getBloodData().getRhFactor() + " ID=" + userPatient.getId() + " AGE=" + userPatient.getAge());
+                    JOptionPane.showMessageDialog(this, "halfDefault Object: Type "+halfDefault.getBloodData().getBloodType()
+                            +halfDefault.getBloodData().getRhFactor() + " ID=" + halfDefault.getId() + " AGE=" + halfDefault.getAge());
+                }
+                dispose();}
+            catch(Exception exp){invalidMsgNotifier();}
+
         }
 
+    }
+
+    public void invalidMsgNotifier(){
+        JOptionPane.showMessageDialog(null, "Invalid input! Please re-enter."
+        ,"Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void main(String[] args){
