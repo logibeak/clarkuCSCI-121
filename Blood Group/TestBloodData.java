@@ -38,8 +38,9 @@ public class TestBloodData extends JFrame implements ActionListener {
                 } else{
                     JOptionPane.showMessageDialog(this, "userInput Object: Type "+userInput.getBloodType()+userInput.getRhFactor());
                     JOptionPane.showMessageDialog(this, "defaultData Object: Type "+defaultData.getBloodType()+defaultData.getRhFactor());
+                    dispose();
                 }
-            } dispose();
+            }
         }
     }
 
