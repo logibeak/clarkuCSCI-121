@@ -1,8 +1,10 @@
 public class Patient {
+    //create data fields
     private int id;
     private int age;
     BloodData bloodData;
 
+    //set get methods
     public void setAge(int age) {
         this.age = age;
     }
@@ -27,8 +29,9 @@ public class Patient {
         return id;
     }
 
+    //Constructors
     Patient(){
-        setId(0);
+        setId(0); // Default values
         setAge(0);
         setBloodData(new BloodData());
     }

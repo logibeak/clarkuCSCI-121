@@ -1,4 +1,5 @@
 public class BloodData {
+    //Enum which stores the different blood types
     enum Blood{
         Ap("A", '+'),
         An("A", '-'),
@@ -10,6 +11,8 @@ public class BloodData {
         On("O", '-');
         private final String bloodType;
         private final char rhFactor;
+
+        //Convert strings to correct enum
         Blood(String bloodType, char rhFactor){
             this.bloodType = bloodType;
             this.rhFactor = rhFactor;
@@ -22,9 +25,10 @@ public class BloodData {
             return rhFactor;
         }
     }
+    //data fields
     private String bloodType;
     private char rhFactor;
-
+    //get set methods
     public char getRhFactor() {
         return rhFactor;
     }
@@ -40,6 +44,7 @@ public class BloodData {
     public void setRhFactor(char rhFactor) {
         this.rhFactor = rhFactor;
     }
+    //constructors
     BloodData(){
         setBloodType(Blood.Op.bloodType);
         setRhFactor(Blood.Op.getRhFactor());
@@ -49,6 +54,7 @@ public class BloodData {
         setRhFactor(bloodType.rhFactor);
     }
 
+    //switch-case to convert string to type stored in enum
     public static BloodData stringToBloodData(String s) {
         BloodData r = switch (s) {
             case "Ap" -> new BloodData(BloodData.Blood.Ap);
