@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 public class TestPatient extends JFrame implements ActionListener {
     //create GUI elements
@@ -104,7 +103,7 @@ public class TestPatient extends JFrame implements ActionListener {
                 //create the three Patient objects based
                 Patient defaultData = new Patient();
                 Patient userPatient = new Patient(id,age,userInput);
-                Patient halfDefault = new Patient(secondID,secondAGE,new BloodData(BloodData.Blood.Op));
+                Patient halfDefault = new Patient(secondID,secondAGE,new BloodData(BloodData.Blood.OPOSITIVE));
 
                 //final error checking + descriptors
                 if (userInput == null){

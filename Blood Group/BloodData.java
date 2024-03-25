@@ -1,14 +1,14 @@
 public class BloodData {
     //Enum which stores the different blood types
     enum Blood{
-        Ap("A", '+'),
-        An("A", '-'),
-        Bp("B", '+'),
-        Bn("B", '-'),
-        ABp("AB", '+'),
-        ABn("AB", '-'),
-        Op("O", '+'),
-        On("O", '-');
+        APOSITIVE("A", '+'),
+        ANEGATIVE("A", '-'),
+        BPOSITIVE("B", '+'),
+        BNEGATIVE("B", '-'),
+        ABPOSITIVE("AB", '+'),
+        ABNEGATIVE("AB", '-'),
+        OPOSITIVE("O", '+'),
+        ONEGATIVE("O", '-');
         private final String bloodType;
         private final char rhFactor;
 
@@ -46,27 +46,20 @@ public class BloodData {
     }
     //constructors
     BloodData(){
-        setBloodType(Blood.Op.bloodType);
-        setRhFactor(Blood.Op.getRhFactor());
+        setBloodType(Blood.OPOSITIVE.bloodType);
+        setRhFactor(Blood.OPOSITIVE.getRhFactor());
     }
     BloodData(Blood bloodType){
         setBloodType(bloodType.bloodType);
         setRhFactor(bloodType.rhFactor);
     }
 
-    //switch-case to convert string to type stored in enum
+    //convert string to type stored in enum
     public static BloodData stringToBloodData(String s) {
-        BloodData r = switch (s) {
-            case "Ap" -> new BloodData(BloodData.Blood.Ap);
-            case "An" -> new BloodData(BloodData.Blood.An);
-            case "Bp" -> new BloodData(BloodData.Blood.Bp);
-            case "Bn" -> new BloodData(BloodData.Blood.Bn);
-            case "Op" -> new BloodData(BloodData.Blood.Op);
-            case "On" -> new BloodData(BloodData.Blood.On);
-            case "ABn" -> new BloodData(BloodData.Blood.ABn);
-            case "ABp" -> new BloodData(BloodData.Blood.ABp);
-            default -> null;
-        };
-        return r;
+        try{return new BloodData(Blood.valueOf(s.replace("+","POSITIVE").
+                replace("-","NEGATIVE").toUpperCase()));
+        } catch (Exception g){
+            return null;
+        }
     }
 }

@@ -31,14 +31,12 @@ public class TestBloodData extends JFrame implements ActionListener {
             String text = input.getText();
             if ((text.contains("+")||text.contains("-"))&&(text.length()<=3)) { // basic error checking
 
-                //convert to form used by the Enum
-                String bloodGroup = text.replace("+","p").replace("-","n");
                 //convert to BloodData data type (stored by enum)
-                BloodData userInput = BloodData.stringToBloodData(bloodGroup);
+                BloodData userInput = BloodData.stringToBloodData(text);
                 //default data
                 BloodData defaultData = new BloodData();
 
-                //error messages/descriptors
+                //edge case error messages / object descriptors
                 if (userInput == null){
                     JOptionPane.showMessageDialog(this,"Invalid Input!");
                 } else{
